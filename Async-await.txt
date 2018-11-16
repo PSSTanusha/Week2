@@ -1,0 +1,49 @@
+                                             Async/Await
+   An asynchronous function is a function which operates asynchronously via the event loop, using an implicit Promise to return its result. 
+But the syntax and structure of your code using async functions is much more like using standard synchronous functions.
+1.The function operates asynchronously via event loop.
+2.It uses an implicit Promise to return the result.
+3.The syntax and structure of the code is similar to writing synchronous functions.
+
+An async function can contain an await expression that pauses the execution of the async function and waits for the passed Promise's 
+resolution, and then resumes the async function's execution and returns the resolved value. Remember, the await keyword is only valid 
+inside async functions.
+
+Here is the code
+
+async function thingOne() { ... }
+async function thingTwo(value) { ... }
+async function thingThree(value) { ... }
+async function doManyThings() {
+  var result = await thingOne();
+  var resultTwo = await thingTwo(result);
+  var finalResult = await thingThree(resultTwo);
+  return finalResult;
+}
+// Call doManyThings()
+
+This is how code with async/await looks like, it very close to synchronous code, and synchronous code is much easier to understand.
+
+So, since doManyThings() is an Asynchronous Function too, how do we await it?
+We can’t. Not with our new syntax. We have three options:
+
+1.Let the rest of our code execute and not wait for it to finish, which we might even want in many cases.
+2.Call it inside another Async Function wrapped with a try/catch block.
+3.or… Use it as a Promise.
+
+// Option 1:
+doManyThings();
+// Option 2:
+(async function() {
+  try {
+    await doManyThings();
+  } catch (err) {
+    console.error(err);
+  }
+})();
+// Option 3:
+doManyThings().then((result) => {
+  // Do the things that need to wait for our function
+}).catch((err) => {
+  throw err;
+});
