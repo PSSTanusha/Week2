@@ -15,7 +15,8 @@
        });
      });  
    This is looking bad just from the skeleton itself. In real code you will obviously have other statements like if, for
- or some other operations along with these nested functions. Add those to the above code and it would get really messy and unmanageable.This is also known as "pyramid of doom".
+ or some other operations along with these nested functions. Add those to the above code and it would get really messy
+ and unmanageable.This is also known as "pyramid of doom".
  The 4 problems introduced by Callback Hell are.
   1.Not Exception Safe
   2.Nightmare Nested Calls
