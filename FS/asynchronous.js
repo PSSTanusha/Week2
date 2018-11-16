@@ -15,7 +15,7 @@ function Readappend(file,appendfile)
 }
 
 //Even if we call the function in a specific order the output will not be in the same order as it is asynchronous reading
-file='./input.txt';
+file='./async_output.txt';
 appendfile='./File1.txt';
 Readappend(file,appendfile);
 appendfile='./File2.txt';
