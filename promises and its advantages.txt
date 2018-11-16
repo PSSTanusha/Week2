@@ -1,41 +1,43 @@
-Promises are an alternative to callbacks for delivering the results of an asynchronous computation. 
+                                             Promises
+   Promises are an alternative to callbacks for delivering the results of an asynchronous computation. 
 They require more effort from implementors of asynchronous functions, but provide several benefits for users of those functions.
 The following function returns a result asynchronously, via a Promise:
 
 function asyncFunc() {
     return new Promise(
         function (resolve, reject) {
-            ···
+            Â·Â·Â·
             resolve(result);
-            ···
+            Â·Â·Â·
             reject(error);
         });
 }
 You call asyncFunc() as follows:
 
 asyncFunc()
-.then(result => { ··· })
-.catch(error => { ··· });
+.then(result => { Â·Â·Â· })
+.catch(error => { Â·Â·Â· });
 
 The Promise API is about delivering results asynchronously. A Promise object (short: Promise) is a stand-in for the result, which is 
 delivered via that object.
 
 States:
 
-A Promise is always in one of three mutually exclusive states:
+  A Promise is always in one of three mutually exclusive states:
 1.Before the result is ready, the Promise is pending.
 2.If a result is available, the Promise is fulfilled.
 3.If an error happened, the Promise is rejected.
-A Promise is settled if “things are done” (if it is either fulfilled or rejected).
+A Promise is settled if â€œthings are doneâ€ (if it is either fulfilled or rejected).
 A Promise is settled exactly once and then remains unchanged.
 
 Promises have the following advantages:
 
-No inversion of control: similarly to synchronous code, Promise-based functions return results, they don’t (directly) continue – and 
-control – execution via callbacks. That is, the caller stays in control.
-Chaining is simpler: If the callback of then() returns a Promise (e.g. the result of calling another Promise-based function) then 
-then() returns that Promise (how this really works is more complicated and explained later). As a consequence, you can chain then() method
-calls:
+No inversion of control: similarly to synchronous code, Promise-based functions return results, they donâ€™t (directly) 
+continue â€“ and control â€“ execution via callbacks. That is, the caller stays in control.
+Chaining is simpler: If the callback of then() returns a Promise (e.g. the result of calling another Promise-based function)
+                     then then() returns that Promise (how this really works is more complicated and explained later). 
+                     As a consequence, you can chain then() method
+  calls:
   asyncFunction1(a, b)
   .then(result1 => {
       console.log(result1);
@@ -44,9 +46,13 @@ calls:
   .then(result2 => {
       console.log(result2);
   });
-Composing asynchronous calls (loops, mapping, etc.): is a little easier, because you have data (Promise objects) you can work with.
-Error handling: As we shall see later, error handling is simpler with Promises, because, once again, there isn’t an inversion of control.
-Furthermore, both exceptions and asynchronous errors are managed the same way.
-Cleaner signatures: With callbacks, the parameters of a function are mixed; some are input for the function, others are responsible for 
-delivering its output. With Promises, function signatures become cleaner; all parameters are input.
-Standardized: Prior to Promises, there were several incompatible ways of handling asynchronous results (Node.js callbacks, XMLHttpRequest, IndexedDB, etc.). With Promises, there is a clearly defined standard: ECMAScript 6. ES6 follows the standard Promises/A+ [1]. Since ES6, an increasing number of APIs is based on Promises.
+Composing asynchronous calls (loops, mapping, etc.): is a little easier, because you have data (Promise objects) you
+                                                      can work with.
+Error handling: As we shall see later, error handling is simpler with Promises, because, once again, there isnâ€™t an 
+                inversion of control.Furthermore, both exceptions and asynchronous errors are managed the same way.
+Cleaner signatures: With callbacks, the parameters of a function are mixed; some are input for the function, others 
+                    are responsible for delivering its output. With Promises, function signatures become cleaner; all
+                    parameters are input.
+Standardized: Prior to Promises, there were several incompatible ways of handling asynchronous results 
+              (Node.js callbacks, XMLHttpRequest, IndexedDB, etc.). With Promises, there is a clearly defined
+             standard: ECMAScript 6. ES6 follows the standard Promises/A+ [1]. Since ES6, an increasing number of APIs is based on   Promises.
